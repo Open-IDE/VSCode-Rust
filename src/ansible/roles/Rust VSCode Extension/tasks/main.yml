@@ -1,5 +1,6 @@
 ---
 #https://code.visualstudio.com/docs/languages/rust
+#https://users.rust-lang.org/t/setting-up-rust-with-vs-code/76907
 
 - name: Core Rust Extensions
   ansible.builtin.shell: "code --install-extension {{item}}"
@@ -7,3 +8,20 @@
     creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{item}}-*"
   loop:
   - rust-lang.rust-analyzer
+  - formulahendry.code-runner
+
+- name: Debugging Extensions
+  ansible.builtin.shell: "code --install-extension {{item}}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{item}}-*"
+  loop:
+  - vadimcn.vscode-lldb
+  when: debugging_extensions
+
+- name: TOML Extension
+  ansible.builtin.shell: "code --install-extension {{item}}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{item}}-*"
+  loop:
+  - tamasfe.even-better-toml
+  when: toml_extension

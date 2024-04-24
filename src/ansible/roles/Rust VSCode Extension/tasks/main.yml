@@ -1,0 +1,9 @@
+---
+#https://code.visualstudio.com/docs/languages/rust
+
+- name: Core Rust Extensions
+  ansible.builtin.shell: "code --install-extension {{item}}"
+  args:
+    creates: "{{ ansible_env.HOME }}/.vscode/extensions/{{item}}-*"
+  loop:
+  - rust-lang.rust-analyzer

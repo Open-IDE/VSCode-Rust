@@ -1,0 +1,5 @@
+---
+- hosts: localhost
+  roles:
+  - UniInc.Visual-Studio-Code
+  - Rust VSCode Extension
